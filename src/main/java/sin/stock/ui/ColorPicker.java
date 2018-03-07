@@ -18,7 +18,6 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import sin.glouds.util.ColorUtil;
 import sin.glouds.util.MouseUtil;
 
 public class ColorPicker extends JFrame {
