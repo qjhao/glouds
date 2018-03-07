@@ -1,0 +1,95 @@
+@CHARSET "UTF-8";
+
+body {
+	font-family: "微软雅黑";
+	font-size: 16px;
+	height: 100%;
+	min-height: 300px;
+	min-width: 500px;
+}
+
+.sin-main-div {
+	width: 100%; #
+	min-width: 500px;
+	height: 100%;
+	background-color: #465ca2;
+}
+
+.sin-head-div {
+	width: 100%;
+	height: 10%;
+	min-height: 50px;
+	border: 0;
+}
+
+.sin-content-div {
+	width: 100%;
+	height: 90%;
+}
+
+.sin-data-div {
+	width: 79%;
+	height: 100%;
+	background-color: white;
+	float: left;
+}
+
+.sin-menu-div {
+	width: 20%;
+	height: 100%;
+	float: left;
+	background-color: #465ca2;
+}
+
+.sin-main-frame {
+	width: 100%;
+	height: 100%;
+}
+
+.sin-menu-frame {
+	width: 100%;
+	height: 100%;
+	background-color: #465ca2;
+}
+
+iframe {
+	width:100%;
+	height:100%
+}
+
+.sin-foot-div {
+	width: 100%;
+	height: 10%; #
+	min-height: 50px;
+	background-color: #afa;
+}
+
+.sin-logo-div {
+	width: 20%;
+	height: 100%;
+	float: left;
+}
+
+.sin-navigation-div {
+	width: 70%;
+	height: 100%;
+	float: left;
+	font-size:50%
+	font-align:center;
+}
+
+.sin-userinfo-div {
+	float: left;
+	width: 10%;
+	height: 100%;
+}
+.sin-hover{
+	cursor: hand;
+}
+ul {
+	list-style:none;
+}
+.navigation ul li {
+	width:25%;
+	height:100%;
+}
