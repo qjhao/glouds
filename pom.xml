@@ -5,6 +5,10 @@
 	<artifactId>glouds</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
+	
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
 
 	<!-- 直接继承spring-boot-starter-parent成为spring-boot项目 -->
 	<parent>

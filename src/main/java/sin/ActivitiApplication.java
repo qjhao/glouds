@@ -18,7 +18,7 @@ public class ActivitiApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ActivitiApplication.class, args);
-		System.exit(0);
+//		System.exit(0);
 	}
 
 	@Bean
