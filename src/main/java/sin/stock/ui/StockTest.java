@@ -10,6 +10,10 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -19,7 +23,7 @@ import sin.glouds.util.MouseUtil;
 public class StockTest {
 
 	public static void main(String[] args) throws AWTException, IOException {
-		vague(5);
+		test10();
 	}
 	
 	public static void test1() {
@@ -123,5 +127,121 @@ public class StockTest {
 			}
 		}
 		ImageIO.write(bi, "jpg", new File("H:/temp/vague_weight_rgb_5.jpg"));
+	}
+	
+	public static void test9() throws IOException {
+		BufferedImage bi = ImageIO.read(new File("H:/temp/stock.png"));
+		System.out.println(bi.getHeight() + " " + bi.getWidth());
+	}
+	
+	public static void test10() throws IOException {
+		BufferedImage bi = ImageIO.read(new File("H:/temp/stock.png"));
+		System.out.println(loadInitData(bi));
+	}
+	
+	public static void test11() throws IOException {
+		BufferedImage bi = ImageIO.read(new File("H:/temp/stock.png"));
+		for(int i = 111; i < 658; i++) {
+			int rgb = bi.getRGB(127, i);
+			if(isData(rgb)) {
+				System.out.println("123, " + i + " : " + new Color(rgb));
+			}
+		}
+	}
+	
+	public static boolean loadInitData(BufferedImage bi) {
+		int priceInitY = 657, priceTop = 111, priceBottom = 658,
+				hourBegin = 5, minutes = 30, hourLength = 56,
+				timeBeginX = 122;
+		StockDataAnalyzer analyzer = StockDataAnalyzer.getInstance();
+		Calendar calendar = new GregorianCalendar();
+		int currHour = calendar.get(Calendar.HOUR_OF_DAY);
+		int top = priceInitY, bottom = priceInitY;
+		if (currHour < hourBegin) {
+		} else {
+			analyzer.putData("0500", new ArrayList<>());
+			for (int i = 0; i < currHour - hourBegin + 1; i++) {
+				for (int j = 0; j < minutes; j++) {
+					int dataX = timeBeginX + i * hourLength + j * hourLength / minutes;
+					List<Integer> data = new ArrayList<>();
+					if (isData(bi, dataX, top)) {
+						data.add(top);
+						for (int t = top - 1; t > priceTop; t--) {
+							if (isData(bi, dataX, t)) {
+								data.add(t);
+							} else {
+								top = t;
+								break;
+							}
+						}
+						for (int b = top + 1; b < priceBottom; b++) {
+							if (isData(bi, dataX, b)) {
+								data.add(b);
+							} else {
+								bottom = b;
+								break;
+							}
+						}
+					} else if (isData(bottom)) {
+						data.add(bottom);
+						for (int t = bottom - 1; t > top; t--) {
+							if (isData(bi, dataX, t)) {
+								data.add(t);
+							} else {
+								top = t;
+								break;
+							}
+						}
+						for (int b = bottom + 1; b < priceBottom; b++) {
+							if (isData(bi, dataX, b)) {
+								data.add(b);
+							} else {
+								bottom = b;
+								break;
+							}
+						}
+					} else {
+						boolean flag = false;
+						for (int t = priceTop; t < priceBottom; t++) {
+							if (isData(bi, dataX, t)) {
+								if (!flag) {
+									flag = true;
+									top = t;
+								}
+								data.add(t);
+							} else if (flag) {
+								bottom = t - 1;
+							}
+						}
+					}
+					int currMinute = j * 60 / minutes;
+					int curHour = hourBegin + i;
+					String currTime = "" + (curHour > 9 ? curHour : "0" + curHour)
+							+ (currMinute > 9 ? currMinute : "0" + currMinute);
+					analyzer.putData(currTime, data);
+				}
+			}
+			System.out.println("ffff");
+			analyzer.printData();
+			return true;
+		}
+		return false;
+	
+	}
+	
+	private static boolean isData(int rgb) {
+		Color color = new Color(rgb);
+		if(color.getRed() > 40 && color.getRed() == color.getBlue() && color.getRed() == color.getBlue())
+			return true;
+		return false;
+	}
+	
+	private static boolean isData(BufferedImage bi, int x, int y) {
+		Color color = new Color(bi.getRGB(x, y));
+		//MouseUtil.moveTo(x + 30, y);
+		//System.out.println("check data:" + x + "," + y + " color:" + color);
+		if(color.getRed() > 40 && color.getRed() == color.getBlue() && color.getRed() == color.getBlue())
+			return true;
+		return false;
 	}
 }

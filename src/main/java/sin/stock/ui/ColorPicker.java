@@ -14,6 +14,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -36,7 +37,7 @@ public class ColorPicker extends JFrame {
 	private static Color borderColor = new Color(190, 20, 10);
 	private static Color priceColor = new Color(190, 20, 10);
 	private static Color nodeColor = new Color(132, 0, 0);
-	private static int initBorderY = 690, initPriceOriginX = 500;
+	private static int initBorderY = 690, initPriceOriginX = 1300;
 	private int timeBeginX, timeEndX, timeInitY, priceInitY, priceTop, priceBottom;
 	private boolean initFlag = false;
 	JTextArea textArea;
@@ -60,13 +61,13 @@ public class ColorPicker extends JFrame {
 				try {
 					textArea.append("\n" + "开始初始化时间轴。。。");
 					setVisible(false);
-//					Thread.sleep(1000);
-//					Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-//					Rectangle rectangle = new Rectangle(0, 0, dimension.width, dimension.height);
-//					Robot robot = new Robot();
-//					BufferedImage bi = robot.createScreenCapture(rectangle);
-//					ImageIO.write(bi, "jpg", new File("H:/temp/stock.jpg"));
-					BufferedImage bi = ImageIO.read(new File("H:/temp/stock.jpg"));
+					Thread.sleep(1000);
+					Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+					Rectangle rectangle = new Rectangle(0, 0, dimension.width, dimension.height);
+					Robot robot = new Robot();
+					BufferedImage bi = robot.createScreenCapture(rectangle);
+					ImageIO.write(bi, "jpg", new File("H:/temp/stock.jpg"));
+//					BufferedImage bi = ImageIO.read(new File("H:/temp/stock.jpg"));
 					if (initTimeInterval(bi)) {
 						textArea.append("\n初始化时间轴成功！");
 						textArea.append(
@@ -219,11 +220,12 @@ public class ColorPicker extends JFrame {
 				for (int j = 0; j < minutes; j++) {
 					int dataX = timeBeginX + i * hourLength + j * hourLength / minutes;
 					List<Integer> data = new ArrayList<>();
-					System.out.println("init dataX:" + dataX);
-					if (isData(bi.getRGB(dataX, top))) {
+					System.out.println("init dataX:" + dataX + " data:" + data);
+					if (isData(bi, dataX, top)) {
+						System.out.println("data from top");
 						data.add(top);
 						for (int t = top - 1; t > priceTop; t--) {
-							if (isData(bi.getRGB(dataX, t))) {
+							if (isData(bi, dataX, t)) {
 								data.add(t);
 							} else {
 								top = t;
@@ -231,7 +233,7 @@ public class ColorPicker extends JFrame {
 							}
 						}
 						for (int b = top + 1; b < priceBottom; b++) {
-							if (isData(bi.getRGB(dataX, b))) {
+							if (isData(bi, dataX, b)) {
 								data.add(b);
 							} else {
 								bottom = b;
@@ -239,9 +241,10 @@ public class ColorPicker extends JFrame {
 							}
 						}
 					} else if (isData(bottom)) {
+						System.out.println("data from bottom");
 						data.add(bottom);
 						for (int t = bottom - 1; t > top; t--) {
-							if (isData(bi.getRGB(dataX, t))) {
+							if (isData(bi, dataX, t)) {
 								data.add(t);
 							} else {
 								top = t;
@@ -249,7 +252,7 @@ public class ColorPicker extends JFrame {
 							}
 						}
 						for (int b = bottom + 1; b < priceBottom; b++) {
-							if (isData(bi.getRGB(dataX, b))) {
+							if (isData(bi, dataX, b)) {
 								data.add(b);
 							} else {
 								bottom = b;
@@ -257,9 +260,10 @@ public class ColorPicker extends JFrame {
 							}
 						}
 					} else {
+						System.out.println("data unknow position");
 						boolean flag = false;
 						for (int t = priceTop; t < priceBottom; t++) {
-							if (isData(bi.getRGB(dataX, t))) {
+							if (isData(bi, dataX, t)) {
 								if (!flag) {
 									flag = true;
 									top = t;
@@ -274,6 +278,8 @@ public class ColorPicker extends JFrame {
 					int curHour = hourBegin + i;
 					String currTime = "" + (curHour > 9 ? curHour : "0" + curHour)
 							+ (currMinute > 9 ? currMinute : "0" + currMinute);
+					System.out.println("node count : " + data.size());
+					Collections.sort(data);
 					analyzer.putData(currTime, data);
 				}
 			}
@@ -301,8 +307,183 @@ public class ColorPicker extends JFrame {
 
 	private boolean isData(int rgb) {
 		Color color = new Color(rgb);
-		if(color.getRed() != 0 && color.getRed() == color.getBlue() && color.getRed() == color.getBlue())
+		if(color.getRed() > 40 && color.getRed() == color.getBlue() && color.getRed() == color.getBlue())
 			return true;
 		return false;
 	}
+	
+	private boolean isData(BufferedImage bi, int x, int y) {
+		Color color = new Color(bi.getRGB(x, y));
+		//MouseUtil.moveTo(x + 30, y);
+		if(color.getRed() > 40 && color.getRed() == color.getBlue() && color.getRed() == color.getBlue())
+			return true;
+		return false;
+	}
+
+	public static Color getBorderColor() {
+		return borderColor;
+	}
+
+	public static void setBorderColor(Color borderColor) {
+		ColorPicker.borderColor = borderColor;
+	}
+
+	public static Color getPriceColor() {
+		return priceColor;
+	}
+
+	public static void setPriceColor(Color priceColor) {
+		ColorPicker.priceColor = priceColor;
+	}
+
+	public static Color getNodeColor() {
+		return nodeColor;
+	}
+
+	public static void setNodeColor(Color nodeColor) {
+		ColorPicker.nodeColor = nodeColor;
+	}
+
+	public static int getInitBorderY() {
+		return initBorderY;
+	}
+
+	public static void setInitBorderY(int initBorderY) {
+		ColorPicker.initBorderY = initBorderY;
+	}
+
+	public static int getInitPriceOriginX() {
+		return initPriceOriginX;
+	}
+
+	public static void setInitPriceOriginX(int initPriceOriginX) {
+		ColorPicker.initPriceOriginX = initPriceOriginX;
+	}
+
+	public int getTimeBeginX() {
+		return timeBeginX;
+	}
+
+	public void setTimeBeginX(int timeBeginX) {
+		this.timeBeginX = timeBeginX;
+	}
+
+	public int getTimeEndX() {
+		return timeEndX;
+	}
+
+	public void setTimeEndX(int timeEndX) {
+		this.timeEndX = timeEndX;
+	}
+
+	public int getTimeInitY() {
+		return timeInitY;
+	}
+
+	public void setTimeInitY(int timeInitY) {
+		this.timeInitY = timeInitY;
+	}
+
+	public int getPriceInitY() {
+		return priceInitY;
+	}
+
+	public void setPriceInitY(int priceInitY) {
+		this.priceInitY = priceInitY;
+	}
+
+	public int getPriceTop() {
+		return priceTop;
+	}
+
+	public void setPriceTop(int priceTop) {
+		this.priceTop = priceTop;
+	}
+
+	public int getPriceBottom() {
+		return priceBottom;
+	}
+
+	public void setPriceBottom(int priceBottom) {
+		this.priceBottom = priceBottom;
+	}
+
+	public boolean isInitFlag() {
+		return initFlag;
+	}
+
+	public void setInitFlag(boolean initFlag) {
+		this.initFlag = initFlag;
+	}
+
+	public JTextArea getTextArea() {
+		return textArea;
+	}
+
+	public void setTextArea(JTextArea textArea) {
+		this.textArea = textArea;
+	}
+
+	public int getHours() {
+		return hours;
+	}
+
+	public void setHours(int hours) {
+		this.hours = hours;
+	}
+
+	public int getMinutes() {
+		return minutes;
+	}
+
+	public void setMinutes(int minutes) {
+		this.minutes = minutes;
+	}
+
+	public int getHourBegin() {
+		return hourBegin;
+	}
+
+	public void setHourBegin(int hourBegin) {
+		this.hourBegin = hourBegin;
+	}
+
+	public int getHourLength() {
+		return hourLength;
+	}
+
+	public void setHourLength(int hourLength) {
+		this.hourLength = hourLength;
+	}
+
+	public int getMinuteLength() {
+		return minuteLength;
+	}
+
+	public void setMinuteLength(int minuteLength) {
+		this.minuteLength = minuteLength;
+	}
+
+	public StockDataAnalyzer getAnalyzer() {
+		return analyzer;
+	}
+
+	public void setAnalyzer(StockDataAnalyzer analyzer) {
+		this.analyzer = analyzer;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@Override
+	public String toString() {
+		return "ColorPicker [timeBeginX=" + timeBeginX + ", timeEndX=" + timeEndX + ", timeInitY=" + timeInitY
+				+ ", priceInitY=" + priceInitY + ", priceTop=" + priceTop + ", priceBottom=" + priceBottom
+				+ ", initFlag=" + initFlag + ", hours=" + hours + ", minutes=" + minutes
+				+ ", hourBegin=" + hourBegin + ", hourLength=" + hourLength + ", minuteLength=" + minuteLength
+				+ ", analyzer=" + analyzer + "]";
+	}
+	
+	
 }

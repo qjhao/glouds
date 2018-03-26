@@ -32,7 +32,13 @@ public final class StockDataAnalyzer {
 		try {
 			PrintWriter writer = new PrintWriter(new FileOutputStream(new File("H:/temp/stockData.txt")));
 			writer.println("----------------开始打印数据-------------------------");
-			data.keySet().stream().sorted().forEach(obj -> writer.println(obj + " : " + data.get(obj).hashCode() + " " + data.get(obj).size()));
+			data.keySet().stream().sorted().forEach(obj -> {
+				List<Integer> dat = data.get(obj);
+				if(dat.size() > 0)
+					writer.println(obj + " : " + dat.get(0) + " - " + dat.get(dat.size() - 1));
+				else 
+					writer.println(obj + "并木有数据呀");
+			});
 			writer.println("----------------打印数据结束-------------------------");
 			writer.close();
 		}catch(Exception e) {

@@ -14,4 +14,9 @@ public class HelloMvcController {
 		System.out.println(new Date());
 		return "page/helloWorld";
 	}
+	
+	@RequestMapping("/error")
+	public String error() {
+		throw new RuntimeException("异常测试");
+	}
 }
