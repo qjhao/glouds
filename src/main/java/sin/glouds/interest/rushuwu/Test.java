@@ -1,8 +1,9 @@
 package sin.glouds.interest.rushuwu;
 
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -19,26 +20,34 @@ public class Test {
 	private final String path = "F://sins/sins/file/books/rushuwu/newest";
 	public static void main(String[] args) throws IOException {
 		//System.out.println(Jsoup.connect("http://www.rushuwu.com/12/12086/2917031.html").get().html());
-		new Test().start("http://www.rushuwu.com/allvote-", ".html", 456);
+		new Test().start("http://www.rushuwu.com/allvote-", ".html", 483);
 	}
 	
 	private void start(String prefix, String suffix, int size) {
-		File file = new File(path);
-		if(!file.exists() || !file.isDirectory())
-			file.mkdirs();
+//		File file = new File(path);
+//		if(!file.exists() || !file.isDirectory())
+//			file.mkdirs();
+		ExecutorService service = Executors.newFixedThreadPool(10);
 		for (int i = 1; i < size; i++) {
 			final String url = prefix + i + suffix;
-			Novels novels = getNovels(url);
-			System.out.println(novels.size());
-			for(Novel novel : novels) {
-				try {
-					String sql = "insert into novel_temp (title,url,author,length,date,status,path,description,desc_url,type) values ('" + novel.getTitle() + "','" + novel.getUrl() + "','" + novel.getAuthor() + "','" + novel.getLength() + "','" + novel.getDate() + "','" + novel.getStatus() + "','" + path + "/" + novel.getTitle() + "','" + novel.getDesc() + "','" + novel.getDescUrl() + "','" + novel.getType() + "')";
-					System.out.println(sql);
-					JConnector.preparedStatement(sql).execute();
-				} catch (SQLException e) {
-					e.printStackTrace();
+			final int index = i;
+			service.submit(new Runnable() {
+				
+				@Override
+				public void run() {
+					Novels novels = getNovels(url);
+					System.out.println("第" + index + "页，共" + size + "页，本页含" + novels.size() + "本。");
+					for(Novel novel : novels) {
+						try {
+							String sql = "insert into novel_rushuwu (title,url,author,length,date,status,path,description,desc_url,type) values ('" + novel.getTitle() + "','" + novel.getUrl() + "','" + novel.getAuthor() + "','" + novel.getLength() + "','" + novel.getDate() + "','" + novel.getStatus() + "','" + path + "/" + novel.getTitle() + "','" + novel.getDesc() + "','" + novel.getDescUrl() + "','" + novel.getType() + "')";
+							//System.out.println(sql);
+							JConnector.preparedStatement(sql).execute();
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+					}
 				}
-			}
+			});
 		}
 	}
 	

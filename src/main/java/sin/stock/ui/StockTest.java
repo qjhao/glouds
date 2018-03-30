@@ -149,12 +149,23 @@ public class StockTest {
 		}
 	}
 	
+	public static void test12() throws IOException {
+		BufferedImage bi = ImageIO.read(new File("H:/temp/stock.png"));
+		for(int i = 111; i < 658; i++) {
+			int rgb = bi.getRGB(127, i);
+			//if(isData(rgb)) {
+				System.out.println("123, " + i + " : " + new Color(rgb));
+			//}
+		}
+	}
+	
 	public static boolean loadInitData(BufferedImage bi) {
 		int priceInitY = 657, priceTop = 111, priceBottom = 658,
 				hourBegin = 5, minutes = 30, hourLength = 56,
 				timeBeginX = 122;
 		StockDataAnalyzer analyzer = StockDataAnalyzer.getInstance();
 		Calendar calendar = new GregorianCalendar();
+		Color baseColor = new Color(157, 58, 58);
 		int currHour = calendar.get(Calendar.HOUR_OF_DAY);
 		int top = priceInitY, bottom = priceInitY;
 		if (currHour < hourBegin) {
@@ -169,6 +180,8 @@ public class StockTest {
 						for (int t = top - 1; t > priceTop; t--) {
 							if (isData(bi, dataX, t)) {
 								data.add(t);
+							} else if(colorEquals(bi.getRGB(dataX, t), baseColor.getRed())) {
+								data.add(t);
 							} else {
 								top = t;
 								break;
@@ -176,6 +189,8 @@ public class StockTest {
 						}
 						for (int b = top + 1; b < priceBottom; b++) {
 							if (isData(bi, dataX, b)) {
+								data.add(b);
+							} else if(colorEquals(bi.getRGB(dataX, b), baseColor.getRed())) {
 								data.add(b);
 							} else {
 								bottom = b;
@@ -187,6 +202,8 @@ public class StockTest {
 						for (int t = bottom - 1; t > top; t--) {
 							if (isData(bi, dataX, t)) {
 								data.add(t);
+							} else if(colorEquals(bi.getRGB(dataX, t), baseColor.getRed())) {
+								data.add(t);
 							} else {
 								top = t;
 								break;
@@ -194,6 +211,8 @@ public class StockTest {
 						}
 						for (int b = bottom + 1; b < priceBottom; b++) {
 							if (isData(bi, dataX, b)) {
+								data.add(b);
+							} else if(colorEquals(bi.getRGB(dataX, b), baseColor.getRed())) {
 								data.add(b);
 							} else {
 								bottom = b;
@@ -204,6 +223,12 @@ public class StockTest {
 						boolean flag = false;
 						for (int t = priceTop; t < priceBottom; t++) {
 							if (isData(bi, dataX, t)) {
+								if (!flag) {
+									flag = true;
+									top = t;
+								}
+								data.add(t);
+							} else if(colorEquals(bi.getRGB(dataX, t), baseColor.getRed())) {
 								if (!flag) {
 									flag = true;
 									top = t;
@@ -243,5 +268,15 @@ public class StockTest {
 		if(color.getRed() > 40 && color.getRed() == color.getBlue() && color.getRed() == color.getBlue())
 			return true;
 		return false;
+	}
+	
+	private static boolean colorEquals(int ...rgbs) {
+		if(rgbs.length < 2)
+			return true;
+		for(int i=1;i<rgbs.length;i++) {
+			if(rgbs[0] != rgbs[i])
+				return false;
+		}
+		return true;
 	}
 }

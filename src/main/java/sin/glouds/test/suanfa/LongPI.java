@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class LongPI {
-	public static int LENGTH = 440000;
+	public static int LENGTH = 1000000;
 	public static int NOM = LENGTH/4 + 1;
 	
 	public static void main(String[] args) {
@@ -23,7 +23,7 @@ public class LongPI {
 		long sta = System.currentTimeMillis();
 		FileWriter fw = null;
 		try {
-			fw = new FileWriter(new File("C:\\hjb\\pi.txt"));//E:\\pi.txt
+			fw = new FileWriter(new File("H:\\temp\\pi.txt"));//E:\\pi.txt
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -76,7 +76,7 @@ public class LongPI {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(System.currentTimeMillis() - sta);
+		System.out.println((System.currentTimeMillis() - sta)/1000/60);
 	}
 	
 	public static void init(int[] s, int a) {

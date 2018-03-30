@@ -37,6 +37,7 @@ public class ColorPicker extends JFrame {
 	private static Color borderColor = new Color(190, 20, 10);
 	private static Color priceColor = new Color(190, 20, 10);
 	private static Color nodeColor = new Color(132, 0, 0);
+	private static Color baseColor = new Color(157, 58, 58);
 	private static int initBorderY = 690, initPriceOriginX = 1300;
 	private int timeBeginX, timeEndX, timeInitY, priceInitY, priceTop, priceBottom;
 	private boolean initFlag = false;
