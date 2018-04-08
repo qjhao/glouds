@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import sin.glouds.common.config.Global;
+import sin.glouds.common.Global;
 import sin.glouds.util.FileUtil;
 
 @Controller

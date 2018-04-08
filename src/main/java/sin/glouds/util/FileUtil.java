@@ -3,7 +3,7 @@ package sin.glouds.util;
 import java.io.File;
 import java.io.FileOutputStream;
 
-import sin.glouds.common.config.Global;
+import sin.glouds.common.Global;
 import sin.glouds.exception.file.FileIsNotDirectoryException;
 
 public class FileUtil {

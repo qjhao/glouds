@@ -1,4 +1,4 @@
-package sin.glouds.common.config;
+package sin.glouds.common;
 
 import java.io.IOException;
 import java.util.HashMap;

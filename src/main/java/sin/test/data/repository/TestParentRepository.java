@@ -32,5 +32,7 @@ public interface TestParentRepository extends JpaRepository<TestParent, Integer>
 
 	TestParent getOne(Integer id);
 	
-	List<TestParent> findBySomeNumberAndTitleLike(Double id, String title);
+	List<TestParent> findBySomeNumberAndTitleLike(Double someNumbber, String title);
+	
+	TestParent findOneBySomeNumberAndFlagAndTitleLike(Double someNumber, boolean flag, String title);
 }

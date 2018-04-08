@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 
-import sin.glouds.common.config.Global;
+import sin.glouds.common.Global;
 import sin.glouds.util.StringUtil;
 
 /*@Component

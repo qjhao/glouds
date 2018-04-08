@@ -7,7 +7,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
-import sin.glouds.common.config.Global;
+import sin.glouds.common.Global;
 import sin.mymusic.entity.Music;
 
 /**

@@ -1,7 +1,5 @@
 package sin.test.data;
 
-import java.util.List;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,8 +11,8 @@ import sin.test.data.entity.TestParent;
 import sin.test.data.repository.TestParentRepository;
 
 @SpringBootApplication
-@ComponentScan("sin.test.data")
-@EntityScan("sin.test.data.entity")
+@ComponentScan(basePackages={"sin.test.data"})
+@EntityScan(basePackages={"sin.test.data.entity"})
 public class DataApplication {
 
 	public static void main(String[] args) {
@@ -29,8 +27,8 @@ public class DataApplication {
 			@Override
 			public void run(String... arg0) throws Exception {
 				try{
-					List<TestParent> parents = repository.findBySomeNumberAndTitleLike(1.1, "%tt%");
-					System.out.println(parents == null?"none resuult":parents);
+					TestParent parents = repository.findOneBySomeNumberAndFlagAndTitleLike(1.1, false, "%tt%");
+					System.out.println(parents == null?"none resuult":parents.getTestChild());
 				}catch(Exception e) {
 					e.printStackTrace();
 				}

@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import sin.glouds.common.config.Global;
+import sin.glouds.common.Global;
 
 public class WebServiceUtil {
 

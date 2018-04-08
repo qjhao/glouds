@@ -8,7 +8,7 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import sin.glouds.common.config.Global;
+import sin.glouds.common.Global;
 import sin.mymusic.entity.Music;
 import sin.mymusic.util.MusicUtil;
 
