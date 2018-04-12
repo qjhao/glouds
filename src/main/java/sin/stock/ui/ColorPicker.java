@@ -11,11 +11,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -68,7 +66,8 @@ public class ColorPicker extends JFrame {
 					Robot robot = new Robot();
 					BufferedImage bi = robot.createScreenCapture(rectangle);
 					ImageIO.write(bi, "jpg", new File("H:/temp/stock.jpg"));
-//					BufferedImage bi = ImageIO.read(new File("H:/temp/stock.jpg"));
+					// BufferedImage bi = ImageIO.read(new
+					// File("H:/temp/stock.jpg"));
 					if (initTimeInterval(bi)) {
 						textArea.append("\n初始化时间轴成功！");
 						textArea.append(
@@ -144,16 +143,17 @@ public class ColorPicker extends JFrame {
 	}
 
 	private static void fillHorColorPoint(List<Integer> points, int y, BufferedImage bi, Color color) {
-//		System.out.println("开始填充颜色点,Y轴坐标:" + y);
+		// System.out.println("开始填充颜色点,Y轴坐标:" + y);
 		points.clear();
 		for (int i = 0; i < bi.getWidth(); i++) {
 			int rgb = color.getRGB();
-//			System.out.println("校验点位:" + i + "," + y + ">>>" + rgb + " " + bi.getRGB(i, y));
+			// System.out.println("校验点位:" + i + "," + y + ">>>" + rgb + " " +
+			// bi.getRGB(i, y));
 			if (rgb == bi.getRGB(i, y)) {
 				points.add(i);
 			}
 		}
-//		System.out.println("颜色点数：" + points.size());
+		// System.out.println("颜色点数：" + points.size());
 	}
 
 	private static void fillVerColorPoint(List<Integer> points, int x, BufferedImage bi, Color color) {
@@ -169,7 +169,7 @@ public class ColorPicker extends JFrame {
 		// System.out.println("颜色点数：" + points.size());
 	}
 
-	private boolean initTimenode(BufferedImage bi) {
+	public boolean initTimenode(BufferedImage bi) {
 		List<Integer> timenodes = new ArrayList<>();
 		for (int i = timeBeginX; i < timeEndX; i++) {
 			Color color = new Color(bi.getRGB(i, timeInitY));
@@ -308,15 +308,15 @@ public class ColorPicker extends JFrame {
 
 	private boolean isData(int rgb) {
 		Color color = new Color(rgb);
-		if(color.getRed() > 40 && color.getRed() == color.getBlue() && color.getRed() == color.getBlue())
+		if (color.getRed() > 40 && color.getRed() == color.getBlue() && color.getRed() == color.getBlue())
 			return true;
 		return false;
 	}
-	
+
 	private boolean isData(BufferedImage bi, int x, int y) {
 		Color color = new Color(bi.getRGB(x, y));
-		//MouseUtil.moveTo(x + 30, y);
-		if(color.getRed() > 40 && color.getRed() == color.getBlue() && color.getRed() == color.getBlue())
+		// MouseUtil.moveTo(x + 30, y);
+		if (color.getRed() > 40 && color.getRed() == color.getBlue() && color.getRed() == color.getBlue())
 			return true;
 		return false;
 	}
@@ -477,14 +477,20 @@ public class ColorPicker extends JFrame {
 		return serialVersionUID;
 	}
 
+	public static Color getBaseColor() {
+		return baseColor;
+	}
+
+	public static void setBaseColor(Color baseColor) {
+		ColorPicker.baseColor = baseColor;
+	}
+
 	@Override
 	public String toString() {
 		return "ColorPicker [timeBeginX=" + timeBeginX + ", timeEndX=" + timeEndX + ", timeInitY=" + timeInitY
 				+ ", priceInitY=" + priceInitY + ", priceTop=" + priceTop + ", priceBottom=" + priceBottom
-				+ ", initFlag=" + initFlag + ", hours=" + hours + ", minutes=" + minutes
-				+ ", hourBegin=" + hourBegin + ", hourLength=" + hourLength + ", minuteLength=" + minuteLength
-				+ ", analyzer=" + analyzer + "]";
+				+ ", initFlag=" + initFlag + ", hours=" + hours + ", minutes=" + minutes + ", hourBegin=" + hourBegin
+				+ ", hourLength=" + hourLength + ", minuteLength=" + minuteLength + ", analyzer=" + analyzer + "]";
 	}
-	
-	
+
 }

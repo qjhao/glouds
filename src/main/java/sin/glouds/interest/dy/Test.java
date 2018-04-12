@@ -12,7 +12,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import sin.glouds.entity.Movie;
+import sin.glouds.entity.sins.Movie;
 import sin.glouds.util.StringUtil;
 
 public class Test {

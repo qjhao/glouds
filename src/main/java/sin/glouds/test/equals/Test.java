@@ -17,6 +17,15 @@ public class Test extends Object {
 		System.out.println(new Fifth() == new Third());
 		System.out.println(new Fifth().equals(new Third()));
 		System.out.println(new Six() == new Six());
+		Integer a = 11, b = 1_1;
+		System.out.println(a == b);
+		Double d = 1_1.0, e = 11.0;
+		Float f = 11f, g = 1_1f;
+		System.out.println(d == e);
+		System.out.println(d == f.doubleValue());
+		System.out.println(d.doubleValue() == f.doubleValue());
+		System.out.println(f == g);
+		System.out.println(new Float(11.1).doubleValue());
 	}
 }
 

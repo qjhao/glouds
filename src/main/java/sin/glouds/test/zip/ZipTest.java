@@ -21,8 +21,8 @@ import static sin.glouds.util.staticutil.UIManagerUtil.*;
 public class ZipTest extends JFrame {
 
 	@SuppressWarnings("unused")
-	private static String filePath = "C://hjb/sins/out/zip/bef";
-	private static String outFilePath = "C://hjb/sins/out/zip/aft";
+	private static String filePath = "H://temp";
+	private static String outFilePath = "H://temp/zip";
 	private static InputStream input;
 	private static ZipOutputStream output;
 	
@@ -65,6 +65,7 @@ public class ZipTest extends JFrame {
 	
 	public static void compress(File file, String zipFileName) throws ZipException, IOException {
 		File zipFile = new File(zipFileName);
+		System.out.println(zipFile.getAbsolutePath());
 		if(!file.exists()) {
 			System.out.println("要压缩的文件不存在");
 			return;

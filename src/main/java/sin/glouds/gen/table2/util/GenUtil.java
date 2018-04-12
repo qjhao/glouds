@@ -123,6 +123,53 @@ public class GenUtil {
 		Class.forName(driverClassName);
 		return DriverManager.getConnection(url, username, password);
 	}
+	
+	public static List<String> getPKList(DatabaseInfo info, TableInfo tableInfo) {
+		if (checkDatabaseInfo(info) && checkTableInfo(tableInfo)) {
+			String sql = "";
+			switch (info.getDatabaseType()) {
+			case MYSQL:
+				sql = "SELECT lower(au.COLUMN_NAME) AS columnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE au WHERE au.TABLE_NAME = ? AND au.TABLE_SCHEMA = (SCHEMA_NAME())";
+				break;
+			case ORACLE:
+				sql = "SELECT lower(cu.COLUMN_NAME) AS columnName FROM user_cons_columns cu, user_constraints au WHERE cu.constraint_name = au.constraint_name AND au.constraint_type = 'P' AND au.table_name = upper(?)";
+				break;
+			case SQLSERVER:
+				sql = "SELECT lower(au.COLUMN_NAME) AS columnName FROM information_schema.COLUMNS au WHERE au.TABLE_SCHEMA = (select database()) AND au.COLUMN_KEY='PRI' AND au.TABLE_NAME = ?";
+				break;
+			default:
+				throw new IllegalArgumentException("查询失败，不支持的数据库类型");
+			}
+			Connection connection = null;
+			try {
+				connection = openConnection(info.getDriverClassName(), info.getUrl(), info.getUsername(),
+						info.getPassword());
+			} catch (Exception e) {
+				throw new RuntimeException("数据库连接失败，请检查连接参数");
+			}
+			
+			try {
+				List<String> pks = new ArrayList<>();
+				PreparedStatement ps = connection.prepareStatement(sql);
+				ps.setString(1, tableInfo.getName());
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()) {
+					String columnName = rs.getString("columnName");
+					if(columnName == null)
+						continue;
+					pks.add(columnName);
+				}
+				rs.close();
+				ps.close();
+				connection.close();
+				return pks;
+			}catch(SQLException e) {
+				throw new RuntimeException("数据查询失败，表数据查询出现异常");
+			}
+		} else {
+			throw new IllegalArgumentException("数据库连接失败，数据库连接参数不全");
+		}
+	}
 
 	private static boolean checkDatabaseInfo(DatabaseInfo info) {
 		return info.getDatabaseType() != null && info.getDatabaseType() != DatabaseType.OTHERS && info.getUrl() != null
@@ -135,7 +182,7 @@ public class GenUtil {
 	}
 	
 	public void temp() {
-		String sql = "SELECT t.COLUMN_NAME AS name, (CASE WHEN t.IS_NULLABLE = 'YES' THEN 'true' ELSE 'false' END) AS isNull, (t.ORDINAL_POSITION * 10) AS sort,t.COLUMN_COMMENT AS comments,t.COLUMN_TYPE AS type FROM information_schema.COLUMNS t WHERE t.TABLE_SCHEMA = (select database()) AND t.TABLE_NAME = ? ORDER BY t.ORDINAL_POSITION";
+		String sql = "SELECT lower(au.COLUMN_NAME) AS columnName FROM information_schema.`COLUMNS` au WHERE au.TABLE_SCHEMA = (select database()) AND au.COLUMN_KEY='PRI' AND au.TABLE_NAME = ?";
 		System.out.println(sql);
 	}
 	

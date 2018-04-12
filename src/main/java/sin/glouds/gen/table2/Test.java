@@ -9,8 +9,8 @@ import sin.glouds.gen.table2.util.GenUtil;
 
 public class Test {
 
-	private static String filePath = "H://temp/gen/";
-	private static String packageName;
+//	private static String filePath = "H://temp/gen/";
+//	private static String packageName;
 
 	public static void main(String[] args) throws Exception {
 		// GenModel model = new GenModel();
