@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaRepositories(
 		entityManagerFactoryRef = "localhostMysqlTestEntityManagerFactory",
 		transactionManagerRef = "localhostMysqlTestTransactionManager",
-		basePackages = {"sin.test.data.repository.test"}
+		basePackages = {"sin.glouds.repository.test"}
 		)
 public class LocalhostMysqlTestConfig {
 
@@ -39,7 +39,7 @@ public class LocalhostMysqlTestConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
 		return builder.dataSource(localhostMysqlTestDataSource)
 				.properties(jpaProperties.getHibernateProperties(localhostMysqlTestDataSource))
-				.packages("sin.test.data.entity.test")
+				.packages("sin.glouds.entity.test")
 				.persistenceUnit("localhostMysqlTestPersistenceUnit")
 				.build();
 	}

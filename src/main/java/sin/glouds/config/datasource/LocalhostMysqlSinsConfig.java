@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaRepositories(
 		entityManagerFactoryRef = "localhostMysqlSinsEntityManagerFactory",
 		transactionManagerRef = "localhostMysqlSinsTransactionManager",
-		basePackages = {"sin.test.data.repository.sins"}
+		basePackages = {"sin.glouds.repository.sins"}
 		)
 public class LocalhostMysqlSinsConfig {
 
@@ -42,7 +42,7 @@ public class LocalhostMysqlSinsConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
 		return builder.dataSource(localhostMysqlSinsDataSource)
 				.properties(jpaProperties.getHibernateProperties(localhostMysqlSinsDataSource))
-				.packages("sin.test.data.entity.sins")
+				.packages("sin.glouds.entity.sins")
 				.persistenceUnit("localhostMysqlSinsPersistenceUnit")
 				.build();
 	}

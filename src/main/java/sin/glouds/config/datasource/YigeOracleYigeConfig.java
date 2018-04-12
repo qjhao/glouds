@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaRepositories(
 		entityManagerFactoryRef = "yigeOracleYigeEntityManagerFactory",
 		transactionManagerRef = "yigeOracleYigeTransactionManager",
-		basePackages = {"sin.test.data.repository.yige"}
+		basePackages = {"sin.glouds.repository.yige"}
 		)
 public class YigeOracleYigeConfig {
 
@@ -39,7 +39,7 @@ public class YigeOracleYigeConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
 		return builder.dataSource(yigeOracleYigeDataSource)
 				.properties(jpaProperties.getHibernateProperties(yigeOracleYigeDataSource))
-				.packages("sin.test.data.entity.yige")
+				.packages("sin.glouds.entity.yige")
 				.persistenceUnit("yigeOracleYigePersistenceUnit")
 				.build();
 	}
