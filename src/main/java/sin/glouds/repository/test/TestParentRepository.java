@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import sin.glouds.entity.test.TestParent;
 
@@ -16,9 +15,12 @@ public interface TestParentRepository extends JpaRepository<TestParent, Integer>
 	
 	Page<TestParent> findAll(Pageable pageable);
 	
-	@Query("from TestParent where id=?")
-	TestParent get(Integer id);
-	
+	@Override
+	default TestParent findOne(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	TestParent getOneByTitle(String title);
 	
 	List<TestParent> findByFlag(boolean flag);

@@ -1,38 +1,27 @@
 package sin.glouds.config.quartz;
 
-import org.quartz.Trigger;
-import org.springframework.scheduling.config.ScheduledTask;
-import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
-import org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean;
+import org.quartz.Scheduler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
+import org.springframework.scheduling.quartz.SpringBeanJobFactory;
 
+//@Configuration
 public class QuartzConfig {
 
-	public MethodInvokingJobDetailFactoryBean detailFactoryBean(ScheduledTask task) {
-		MethodInvokingJobDetailFactoryBean jobDetail = new MethodInvokingJobDetailFactoryBean();
-		//是否并发执行 涉及数据库操作应设置为false
-		jobDetail.setConcurrent(false);
-		jobDetail.setName("name");
-		jobDetail.setGroup("group");
-		jobDetail.setTargetObject(task);
-		jobDetail.setTargetMethod("excute");
-		return jobDetail;
+	@Autowired
+	private SpringBeanJobFactory springBeanJobFactory;
+	
+	@Bean(name = "schedulerFactoryBean")
+	public SchedulerFactoryBean schedulerFactoryBean() {
+		SchedulerFactoryBean schedulerFactoryBean = new SchedulerFactoryBean();
+	    schedulerFactoryBean.setJobFactory(springBeanJobFactory);
+	    return schedulerFactoryBean;
 	}
 	
-	
-	public CronTriggerFactoryBean cronTrigger(MethodInvokingJobDetailFactoryBean jobDetail) {
-		CronTriggerFactoryBean trigger = new CronTriggerFactoryBean();
-		trigger.setJobDetail(jobDetail.getObject());
-		trigger.setCronExpression("0 30 20 * * ?");
-		trigger.setName("name");
-		return trigger;
-	}
-	
-	public SchedulerFactoryBean schedulerFactory(Trigger cronTrigger) {
-		SchedulerFactoryBean bean = new SchedulerFactoryBean();
-		bean.setOverwriteExistingJobs(true);
-		bean.setStartupDelay(3);
-		bean.setTriggers(cronTrigger);
-		return bean;
+	@Bean(name = "scheduler")
+	public Scheduler scheduler() {
+		return schedulerFactoryBean().getScheduler();
 	}
 }
