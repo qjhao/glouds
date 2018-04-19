@@ -10,7 +10,7 @@ public class MySchedule {
 	@Value("${cron.value}")
 	private String cronStr;
 	
-	@Scheduled(cron = "${cron.value}")
+	@Scheduled(cron = "${cron.scheduler.value.test}")
 	public void printTime() {
 		System.out.println(cronStr + "\t" + System.currentTimeMillis());
 	}
