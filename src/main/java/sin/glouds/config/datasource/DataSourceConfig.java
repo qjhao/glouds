@@ -29,4 +29,10 @@ public class DataSourceConfig {
 	public DataSource yigeOracleYigeDatasource() {
 		return DataSourceBuilder.create().build();
 	}
+	
+	@Bean(name = "yigeOracleDfdxDataSource")
+	@ConfigurationProperties(prefix = "spring.datasource.yige.oracle.dfdx")
+	public DataSource yigeOracleDfdxDatasource() {
+		return DataSourceBuilder.create().build();
+	}
 }

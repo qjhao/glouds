@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MySchedule {
 
-	@Value("${cron.value}")
+	@Value("${cron.scheduler.value.test}")
 	private String cronStr;
 	
 	@Scheduled(cron = "${cron.scheduler.value.test}")

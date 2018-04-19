@@ -12,7 +12,7 @@ public class Test {
 		System.out.println(play.click(9, 7));
 		System.out.println(play.click(7, 6));
 		play.move(new Point(9, 7), new Point(7, 6));
-//		play.printChessBoard();
+		play.printChessBoard();
 		play.printQipu();
 	}
 
