@@ -1,5 +1,7 @@
 package sin.glouds.config.datasource;
 
+import java.util.Map;
+
 import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 
@@ -37,8 +39,10 @@ public class YigeOracleDfdxConfig {
 	
 	@Bean(name = "yigeOracleDfdxEntityManagerFactory")
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
+		Map<String, String> properties = jpaProperties.getHibernateProperties(yigeOracleDfdxDataSource);
+		properties.put("hibernate.dialect", "org.hibernate.dialect.OracleDialect");
 		return builder.dataSource(yigeOracleDfdxDataSource)
-				.properties(jpaProperties.getHibernateProperties(yigeOracleDfdxDataSource))
+				.properties(properties)
 				.packages("sin.glouds.entity.dfdx")
 				.persistenceUnit("yigeOracleDfdxPersistenceUnit")
 				.build();
