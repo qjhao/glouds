@@ -35,4 +35,10 @@ public class DataSourceConfig {
 	public DataSource yigeOracleDfdxDatasource() {
 		return DataSourceBuilder.create().build();
 	}
+	
+	@Bean(name = "localhostMysqlJeesiteDataSource")
+	@ConfigurationProperties(prefix = "spring.datasource.localhost.mysql.jeesite")
+	public DataSource localhostMysqlJeesiteDatasource() {
+		return DataSourceBuilder.create().build();
+	}
 }

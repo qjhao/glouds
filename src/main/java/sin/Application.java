@@ -24,6 +24,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 import sin.glouds.entity.dfdx.Store;
 import sin.glouds.repository.dfdx.StoreRepository;
+import sin.test.jeesite.dao.UserDao;
 
 @SpringBootApplication
 @ComponentScan(basePackages={"sin.glouds"})
@@ -31,6 +32,8 @@ public class Application {
 
 	@Resource
 	private StoreRepository storeRepository;
+	@Resource
+	private UserDao userDao;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -44,7 +47,7 @@ public class Application {
 			
 			@Override
 			public void run(String... arg0) throws Exception {
-				
+				System.out.println(userDao.findList().size());
 			}
 		};
 	}

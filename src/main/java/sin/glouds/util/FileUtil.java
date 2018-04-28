@@ -5,7 +5,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.io.RandomAccessFile;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -53,6 +55,28 @@ public class FileUtil {
 		}
 		FileOutputStream out = new FileOutputStream(filePath + fileName);
 		out.write(file);
+		out.flush();
+		out.close();
+	}
+	
+	/**
+	 * 保存文件
+	 * 
+	 * @param data
+	 * @param filePath
+	 * @param fileName
+	 * @throws Exception
+	 */
+	public static void saveFile(List<?> data, String filePath, String fileName) throws Exception {
+		File targetFile = new File(filePath);
+		if (!targetFile.exists()) {
+			targetFile.mkdirs();
+		}
+		FileOutputStream out = new FileOutputStream(targetFile.getAbsolutePath() + File.separator + fileName);
+		PrintWriter writer = new PrintWriter(out);
+		for(Object obj : data) {
+			writer.println(obj.toString());
+		}
 		out.flush();
 		out.close();
 	}

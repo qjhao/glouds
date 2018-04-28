@@ -12,11 +12,11 @@ public class Test {
 	}
 	
 	public static void lukeMsg() {
-		showTime(23, 102, "超5达成！！", 11, 4);
+		showTime(33, 102, "超5达成！！", 11, 4);
 		System.out.println();
-		showTime(23, 202, "圣耀到手！！", 11, 4);
+		showTime(33, 202, "圣耀到手！！", 11, 4);
 		System.out.println();
-		showTime(23, 502, "卢克毕业！！", 11, 4);
+		showTime(33, 502, "卢克毕业！！", 11, 4);
 		System.out.println();
 		System.out.println("欧皇附体！！！！！");
 		showTime(0, 570, "真·欧皇成就达成！！", 11, 4);

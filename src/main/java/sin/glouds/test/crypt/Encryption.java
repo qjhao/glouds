@@ -54,6 +54,10 @@ public class Encryption {
 	 * Elliptic Curves Cryptography，椭圆曲线密码编码学
 	 */
 	public static final String ECC = "ecc";
+	/**
+	 * 
+	 */
+	public static final String AES = "aes";
 	
 	public static String encryptBASE64(byte[] key) {
 		return Base64.getEncoder().encodeToString(key);
