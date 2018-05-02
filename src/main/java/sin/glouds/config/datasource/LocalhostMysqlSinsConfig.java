@@ -43,7 +43,7 @@ public class LocalhostMysqlSinsConfig {
 	@Bean(name = "localhostMysqlSinsEntityManagerFactory")
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
 		Map<String, String> properties = jpaProperties.getHibernateProperties(localhostMysqlSinsDataSource);
-		properties.put("hibernate.dialect", "org.hibernate.dialect.OracleDialect");
+//		properties.put("hibernate.dialect", "org.hibernate.dialect.OracleDialect");
 		return builder.dataSource(localhostMysqlSinsDataSource)
 				.properties(properties)
 				.packages("sin.glouds.entity.sins")

@@ -55,11 +55,11 @@
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.activiti/activiti-spring-boot-starter-basic -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.activiti</groupId>
 			<artifactId>activiti-spring-boot-starter-basic</artifactId>
 			<version>6.0.0</version>
-		</dependency>
+		</dependency> -->
 
 		<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
 		<dependency>

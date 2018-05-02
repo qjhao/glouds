@@ -15,4 +15,13 @@
         WHERE a.del_flag = '0'
 	</select>
 	
+	<update id="update" parameterType="sin.test.jeesite.entity.User">
+	    
+	    <if test="id != null and id != '' and remarks != null and remarks != ''">
+	        UPDATE sys_user 
+	    	SET remarks = #{remarks}
+	    	WHERE id = #{id}
+	    </if>
+	</update>
+	
 </mapper>

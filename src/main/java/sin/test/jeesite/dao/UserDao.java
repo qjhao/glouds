@@ -9,4 +9,6 @@ import sin.test.jeesite.entity.User;
 
 public interface UserDao {
 	List<User> findList();
+	
+	void update(User user);
 }

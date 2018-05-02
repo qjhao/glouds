@@ -14,7 +14,8 @@ public class TestService {
 	@Autowired
 	private TestRepository testRepository;
 	
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+	
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public void increase() {
 		Test test = testRepository.findOne(1);
 		System.out.println(test.getValue());
