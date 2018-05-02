@@ -7,7 +7,7 @@ import java.awt.Robot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ColorUtil extends sin.glouds.beans.Robot {
+public class ColorUtil extends sin.glouds.bean.Robot {
 	
 	private static Color color;
 	

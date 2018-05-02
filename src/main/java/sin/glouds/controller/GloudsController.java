@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import sin.glouds.beans.Data;
+import sin.glouds.bean.Data;
 import sin.glouds.util.HttpUtil;
 import sin.glouds.util.PropertyUtil;
 import sin.glouds.util.StringUtil;

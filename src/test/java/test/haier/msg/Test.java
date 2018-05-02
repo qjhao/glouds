@@ -3,7 +3,7 @@ package test.haier.msg;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import sin.glouds.jdao.connector.JConnector;
+import sin.glouds.project.jdao.connector.JConnector;
 
 public class Test {
 

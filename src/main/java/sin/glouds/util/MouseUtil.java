@@ -6,7 +6,7 @@ import java.awt.Point;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 
-public class MouseUtil extends sin.glouds.beans.Robot{
+public class MouseUtil extends sin.glouds.bean.Robot{
 	
 	/**
 	 * 获取鼠标当前位置所在屏幕的X坐标

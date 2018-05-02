@@ -2,7 +2,7 @@ package sin.glouds.test.sql;
 
 import java.sql.ResultSet;
 
-import sin.glouds.jdao.connector.JConnector;
+import sin.glouds.project.jdao.connector.JConnector;
 
 /**
  * so 蛋疼

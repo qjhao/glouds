@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import javax.jws.WebService;
 import javax.xml.ws.Endpoint;
 
-import sin.glouds.jdao.connector.JConnector;
+import sin.glouds.project.jdao.connector.JConnector;
 
 @WebService
 public class WsTest {

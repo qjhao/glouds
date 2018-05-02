@@ -9,9 +9,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import sin.glouds.jdao.connector.JConnector;
-import sin.glouds.jdao.connector.JSession;
-import sin.glouds.jdao.context.JContext;
+import sin.glouds.project.jdao.connector.JConnector;
+import sin.glouds.project.jdao.connector.JSession;
+import sin.glouds.project.jdao.context.JContext;
 
 public class Test {
 
