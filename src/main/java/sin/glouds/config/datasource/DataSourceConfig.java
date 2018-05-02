@@ -24,17 +24,17 @@ public class DataSourceConfig {
 		return DataSourceBuilder.create().build();
 	}
 	
-	@Bean(name = "yigeOracleYigeDataSource")
-	@ConfigurationProperties(prefix = "spring.datasource.yige.oracle.yige")
-	public DataSource yigeOracleYigeDatasource() {
-		return DataSourceBuilder.create().build();
-	}
-	
-	@Bean(name = "yigeOracleDfdxDataSource")
-	@ConfigurationProperties(prefix = "spring.datasource.yige.oracle.dfdx")
-	public DataSource yigeOracleDfdxDatasource() {
-		return DataSourceBuilder.create().build();
-	}
+//	@Bean(name = "yigeOracleYigeDataSource")
+//	@ConfigurationProperties(prefix = "spring.datasource.yige.oracle.yige")
+//	public DataSource yigeOracleYigeDatasource() {
+//		return DataSourceBuilder.create().build();
+//	}
+//	
+//	@Bean(name = "yigeOracleDfdxDataSource")
+//	@ConfigurationProperties(prefix = "spring.datasource.yige.oracle.dfdx")
+//	public DataSource yigeOracleDfdxDatasource() {
+//		return DataSourceBuilder.create().build();
+//	}
 	
 	@Bean(name = "localhostMysqlJeesiteDataSource")
 	@ConfigurationProperties(prefix = "spring.datasource.localhost.mysql.jeesite")

@@ -1,5 +1,7 @@
 package sin.glouds.config.datasource;
 
+import java.util.Map;
+
 import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 
@@ -40,8 +42,10 @@ public class LocalhostMysqlSinsConfig {
 	@Primary
 	@Bean(name = "localhostMysqlSinsEntityManagerFactory")
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
+		Map<String, String> properties = jpaProperties.getHibernateProperties(localhostMysqlSinsDataSource);
+		properties.put("hibernate.dialect", "org.hibernate.dialect.OracleDialect");
 		return builder.dataSource(localhostMysqlSinsDataSource)
-				.properties(jpaProperties.getHibernateProperties(localhostMysqlSinsDataSource))
+				.properties(properties)
 				.packages("sin.glouds.entity.sins")
 				.persistenceUnit("localhostMysqlSinsPersistenceUnit")
 				.build();

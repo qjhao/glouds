@@ -13,8 +13,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 @Configuration
-@MapperScan(basePackages = {
-		"sin.test.jeesite" }, sqlSessionFactoryRef = "localhostMysqlJeesiteSqlSessionFactory")
+@MapperScan(basePackages = { "sin.test.jeesite" }, sqlSessionFactoryRef = "localhostMysqlJeesiteSqlSessionFactory")
 public class LocalhostMysqlJeesiteConfig {
 
 	private static final String MAPPER_LOCATION = "classpath:mybatis/mappers/localhost/mysql/jeesite/*.xml";
