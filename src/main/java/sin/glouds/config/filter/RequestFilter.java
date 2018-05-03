@@ -1,4 +1,4 @@
-package sin.glouds.filter;
+package sin.glouds.config.filter;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -14,6 +14,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @WebFilter(urlPatterns="/*")
 public class RequestFilter implements Filter {
 
@@ -35,12 +38,12 @@ public class RequestFilter implements Filter {
 		String session = request.getRequestedSessionId();
 		
 		System.out.println();
-		System.out.println();
 		System.out.println("=======================================");
 		System.out.println("请求来源：" + addr);
 		System.out.println("请求地址：" + url);
 		System.out.println("会话ID：" + session);
 		System.out.println("请求时间：" + sdf.format(new Date()));
+		System.out.println();
 		
 		arg2.doFilter(arg0, arg1);
 	}

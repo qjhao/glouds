@@ -1,5 +1,7 @@
 package sin.glouds.config.datasource;
 
+import java.util.Map;
+
 import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 
@@ -37,8 +39,9 @@ public class LocalhostMysqlTestConfig {
 	
 	@Bean(name = "localhostMysqlTestEntityManagerFactory")
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
+		Map<String, String> properties = jpaProperties.getHibernateProperties(localhostMysqlTestDataSource);
 		return builder.dataSource(localhostMysqlTestDataSource)
-				.properties(jpaProperties.getHibernateProperties(localhostMysqlTestDataSource))
+				.properties(properties)
 				.packages("sin.glouds.entity.test")
 				.persistenceUnit("localhostMysqlTestPersistenceUnit")
 				.build();

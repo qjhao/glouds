@@ -46,10 +46,12 @@ public class ReadInWork extends EBookAdapter {
 	public static final String cszyqyd = "http://www.shenpinwu.com/9/9536/";
 	public static final String mrhl = "http://www.shenpinwu.com/8/8643/";
 	public static final String hlyh = "https://www.23us.cc/html/7/7579/";
+	public static final String hlzjz = "https://www.kuaiyankanshu.net/691634/dir.html";
+	public static final String hlzjzb = "https://www.kuaiyankanshu.net";
 
 	public static void main(String[] args) throws Exception {
 		ReadInWork riw = new ReadInWork();
-		riw.readAutoIncrease(hlyh, hlyh, -1);
+		riw.readAutoIncrease(hlzjz, hlzjzb, -1);
 	}
 
 	public void readAutoIncrease(String url, String baseUrl, int i) throws Exception {

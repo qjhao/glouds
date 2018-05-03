@@ -12,11 +12,11 @@ public class Test {
 	}
 	
 	public static void lukeMsg() {
-		showTime(33, 102, "超5达成！！", 11, 4);
+		showTime(20, 170, "恶魔5达成！！", 11, 4);
 		System.out.println();
-		showTime(33, 202, "圣耀到手！！", 11, 4);
+		showTime(20, 270, "圣耀到手！！", 11, 4);
 		System.out.println();
-		showTime(33, 502, "卢克毕业！！", 11, 4);
+		showTime(20, 570, "卢克毕业！！", 11, 4);
 		System.out.println();
 		System.out.println("欧皇附体！！！！！");
 		showTime(0, 570, "真·欧皇成就达成！！", 11, 4);
@@ -42,7 +42,7 @@ public class Test {
 	}
 	
 	private static int getWeeks(int count, int goal, int per) {
-		double weeks = (goal - count - 4) / 2.0 / per - 1;
+		double weeks = (goal - count) / 2.0 / per;
 		int actualWeeks = (int)Math.ceil(weeks);
 		return actualWeeks;
 	}

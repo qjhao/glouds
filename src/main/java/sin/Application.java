@@ -8,13 +8,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages={"sin.glouds"})
+@ComponentScan(basePackages={"sin.glouds", "sin.mymusic"})
 public class Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 		System.out.println("==============================");
-		System.exit(0);
 	}
 	
 	@Bean

@@ -5,14 +5,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import sin.glouds.entity.sins.User;
-
 @Controller
 public class HomeController {
 
 	@RequestMapping("/home")
-	public String home(User user, HttpServletRequest request) {
-		return "page/home";
+	public String home(HttpServletRequest request) {
+		return "page/helloWorld";
 	}
 	
 	@RequestMapping("/index")

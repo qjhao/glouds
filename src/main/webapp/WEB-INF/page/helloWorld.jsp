@@ -14,10 +14,9 @@
 	<script type="text/javascript" src="/sins/common/myjs/mymusic.js"></script>
 </head>
 <body>
-<div id="sin-audio"></div>
+<div id="sin-audio" style="display:none"></div>
 <script type="text/javascript">
 $(function() {
-	console.log("1111");
 	initAudio($("#sin-audio"));
 })
 </script>
