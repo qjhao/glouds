@@ -8,8 +8,8 @@ $(function(){
 function initAudio(obj) {
 	if(obj) {
 		console.log(obj);
-		$(obj).attr("class", "sin-audio music-container navbar-fixed-bottom");
-		var str = '<div class="music-pannel container"><audio id="audio" src="" autoplay controls class="pull-left musiccomp"></audio><input id="playnext" class="musiccomp pull-left btn btn-info" value="下一首" title="随机下一首" type="button" /></div>';
+		$(obj).attr("class", "navbar-fixed-bottom sin-audio music-container");
+		var str = '<div class="music-pannel"><audio id="audio" src="" autoplay controls class="pull-left musiccomp"></audio><input id="playnext" class="musiccomp pull-left btn btn-info" value="下一首" title="随机下一首" type="button" /></div>';
 		$(obj).html(str);
 		beginPlay();
 	}else {

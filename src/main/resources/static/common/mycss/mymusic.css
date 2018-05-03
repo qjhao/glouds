@@ -1,15 +1,14 @@
 @CHARSET "UTF-8";
 
 body {
-	background-color: #aac;
 	text-align: center;
 }
 .music-pannel {
 	background-color: #000;
 	opacity: 1;
 	height: 54px;
-	width: 500px;
-	margin: 0 auto;
+	width: 400px;
+	margin: 11px auto;
 }
 
 .music-container {
@@ -22,7 +21,6 @@ body {
 
 .musiccomp {
 	opacity: 1;
-	margin: 10 10 10 10;
 	height: 32px;
 	padding: 0;
 	font-weight: 0;

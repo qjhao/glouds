@@ -2,34 +2,96 @@ package sin.glouds.bean;
 
 import java.util.List;
 
-public class Page {
-	private Integer page;
-	private Integer total;
-	private List<?> rows;
-	private Integer records;
-	public Integer getPage() {
-		return page;
-	}
-	public void setPage(Integer page) {
-		this.page = page;
-	}
-	public Integer getTotal() {
+public class Page<T> {
+	private Long total;
+	private List<T> rows;
+	private Integer pageSize;
+	private Integer pageNumber;
+	private Integer nextPage;
+	private Integer prePage;
+	private Integer size;
+	private Integer pages;
+	private Integer startRow;
+	private Integer endRow;
+
+	public Long getTotal() {
 		return total;
 	}
-	public void setTotal(Integer total) {
+
+	public void setTotal(Long total) {
 		this.total = total;
 	}
-	public List<?> getRows() {
+
+	public List<T> getRows() {
 		return rows;
 	}
-	public void setRows(List<?> rows) {
+
+	public void setRows(List<T> rows) {
 		this.rows = rows;
 	}
-	public void setRecords(Integer records) {
-		this.records = records;
+
+	public Integer getPageSize() {
+		return pageSize;
 	}
-	public Integer getRecords() {
-		return records;
+
+	public void setPageSize(Integer pageSize) {
+		this.pageSize = pageSize;
 	}
-	
+
+	public Integer getPageNumber() {
+		return pageNumber;
+	}
+
+	public void setPageNumber(Integer pageNumber) {
+		this.pageNumber = pageNumber;
+	}
+
+	public Integer getNextPage() {
+		return nextPage;
+	}
+
+	public void setNextPage(Integer nextPage) {
+		this.nextPage = nextPage;
+	}
+
+	public Integer getPrePage() {
+		return prePage;
+	}
+
+	public void setPrePage(Integer prePage) {
+		this.prePage = prePage;
+	}
+
+	public Integer getSize() {
+		return size;
+	}
+
+	public void setSize(Integer size) {
+		this.size = size;
+	}
+
+	public Integer getPages() {
+		return pages;
+	}
+
+	public void setPages(Integer pages) {
+		this.pages = pages;
+	}
+
+	public Integer getStartRow() {
+		return startRow;
+	}
+
+	public void setStartRow(Integer startRow) {
+		this.startRow = startRow;
+	}
+
+	public Integer getEndRow() {
+		return endRow;
+	}
+
+	public void setEndRow(Integer endRow) {
+		this.endRow = endRow;
+	}
+
 }

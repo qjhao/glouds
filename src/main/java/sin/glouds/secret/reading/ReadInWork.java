@@ -55,21 +55,24 @@ public class ReadInWork extends EBookAdapter {
 	}
 
 	public void readAutoIncrease(String url, String baseUrl, int i) throws Exception {
-		if (i == -1) {
+		int index = i;
+		if (i < 0) {
 			BufferedReader reader = new BufferedReader(
 					new FileReader(FileUtil.createFileInUserHome("/readInWork/", "1")));
-			i = Integer.parseInt(reader.readLine());
+			index = Integer.parseInt(reader.readLine());
+			if (i < -1)
+				index -= 1;
 			reader.close();
 		}
 		Entries entries = getChapterEntries(url);
-		if (entries.size() > i) {
-			Entry entry = entries.get(i);
+		if (entries.size() > index) {
+			Entry entry = entries.get(index);
 			String content = getHtml(entry, baseUrl).replaceAll("&nbsp;", "");
-			System.out.println((content.length() < 100000 ? content : content.substring(0, 100000)) + "\n" + i + " "
+			System.out.println((content.length() < 100000 ? content : content.substring(0, 100000)) + "\n" + index + " "
 					+ entry.title);
 
 			PrintWriter writer = new PrintWriter(FileUtil.createFileInUserHome("/readInWork/", "1"));
-			writer.write(i + 1 + "");
+			writer.write(index + 1 + "");
 			writer.close();
 		} else {
 			System.out.println(entries.size() + "/" + i + " 少年呦！青春是不允许越界的！！");

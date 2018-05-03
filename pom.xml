@@ -36,6 +36,13 @@
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>1.3.2</version>
 		</dependency>
+		<!-- mybatis的分页插件 -->
+		<!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper-spring-boot-starter -->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper-spring-boot-starter</artifactId>
+			<version>1.2.5</version>
+		</dependency>
 
 		<dependency>
 			<groupId>mysql</groupId>
@@ -55,11 +62,8 @@
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.activiti/activiti-spring-boot-starter-basic -->
-		<!-- <dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>activiti-spring-boot-starter-basic</artifactId>
-			<version>6.0.0</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.activiti</groupId> <artifactId>activiti-spring-boot-starter-basic</artifactId> 
+			<version>6.0.0</version> </dependency> -->
 
 		<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
 		<dependency>
@@ -179,11 +183,20 @@
 			<artifactId>spring-context-support</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.sitemesh</groupId>
+			<artifactId>sitemesh</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+
 
 		<!-- 热部署依赖 -->
-		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-devtools</artifactId> 
-			<scope>provided</scope> optional我没弄明白，都说必须为true，但我测试true，false，不加都可以 <optional>true</optional> 
-			</dependency> -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>provided</scope>
+			<optional>true</optional>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -193,6 +206,13 @@
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<fork>true</fork>     <!--fork : 如果没有该项配置，肯呢个devtools不会起作用，即应用不会restart -->
 				</configuration>
 			</plugin>
 		</plugins>

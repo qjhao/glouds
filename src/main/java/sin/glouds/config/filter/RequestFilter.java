@@ -14,10 +14,12 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
 @WebFilter(urlPatterns="/*")
+@Order(value = 100)
 public class RequestFilter implements Filter {
 
 	private static Logger logger = Logger.getGlobal();
