@@ -8,15 +8,16 @@ import java.util.Date;
 public class Test {
 
 	public static void main(String[] args) throws IOException {
-		lukeMsg();
+		lukeMsg(10, 3, "超");
 	}
 	
-	public static void lukeMsg() {
-		showTime(20, 170, "恶魔5达成！！", 11, 4);
+	public static void lukeMsg(int ncount, int ecount, String ename) {
+		ncount = ncount + ecount * 34;
+		showTime(ncount, 170, ename + "5达成！！", 11, 4);
 		System.out.println();
-		showTime(20, 270, "圣耀到手！！", 11, 4);
+		showTime(ncount, 270, "圣耀到手！！", 11, 4);
 		System.out.println();
-		showTime(20, 570, "卢克毕业！！", 11, 4);
+		showTime(ncount, 570, "卢克毕业！！", 11, 4);
 		System.out.println();
 		System.out.println("欧皇附体！！！！！");
 		showTime(0, 570, "真·欧皇成就达成！！", 11, 4);

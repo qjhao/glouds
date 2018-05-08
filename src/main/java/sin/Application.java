@@ -1,6 +1,8 @@
 package sin;
 
 
+import java.io.IOException;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages={"sin.glouds", "sin.mymusic", "sin.test"})
 public class Application {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		SpringApplication.run(Application.class, args);
 		System.out.println("==============================");
 	}
