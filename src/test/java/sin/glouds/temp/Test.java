@@ -1,16 +1,31 @@
 package sin.glouds.temp;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import sin.glouds.project.gen.json.JsonGen;
+
 public class Test {
 
 	public static void main(String[] args) throws IOException {
-		lukeMsg(10, 3, "超");
+		 lukeMsg(20, 0, "7");
+
+//		 BufferedReader reader = new BufferedReader(new FileReader(new
+//		 File("H:/temp/json.txt")));
+//		 String data = "",line = null;
+//		 while((line = reader.readLine()) != null) {
+//		 data = data + line;
+//		 }
+//		 JsonGen.jsonToJavaBeanFile(data, new File("H:/temp/gen/"),
+//		 "TransferData", "com.thinkgem.jeesite.kingdee.bean.transfersave");
+
 	}
-	
+
 	public static void lukeMsg(int ncount, int ecount, String ename) {
 		ncount = ncount + ecount * 34;
 		showTime(ncount, 170, ename + "5达成！！", 11, 4);
@@ -22,7 +37,7 @@ public class Test {
 		System.out.println("欧皇附体！！！！！");
 		showTime(0, 570, "真·欧皇成就达成！！", 11, 4);
 	}
-	
+
 	private static void showTime(int count, int goal, String message, int max, int min) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		int minWeeks = getWeeks(count, goal, max);
@@ -41,10 +56,10 @@ public class Test {
 		System.out.println("最晚：" + shit);
 		System.out.println(message);
 	}
-	
+
 	private static int getWeeks(int count, int goal, int per) {
 		double weeks = (goal - count) / 2.0 / per;
-		int actualWeeks = (int)Math.ceil(weeks);
+		int actualWeeks = (int) Math.ceil(weeks);
 		return actualWeeks;
 	}
 }

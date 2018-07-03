@@ -48,10 +48,12 @@ public class ReadInWork extends EBookAdapter {
 	public static final String hlyh = "https://www.23us.cc/html/7/7579/";
 	public static final String hlzjz = "https://www.kuaiyankanshu.net/691634/dir.html";
 	public static final String hlzjzb = "https://www.kuaiyankanshu.net";
+	public static final String hlzxhzfdj = "https://www.xs74.com/novel/honglouzhixiaohuangzifendouji/";
+	public static final String cfwljhg = "http://www.shenpinwu.com/18/18962/";
 
 	public static void main(String[] args) throws Exception {
 		ReadInWork riw = new ReadInWork();
-		riw.readAutoIncrease(hlzjz, hlzjzb, -1);
+		riw.readAutoIncrease(rdzs, rdzs, -1);
 	}
 
 	public void readAutoIncrease(String url, String baseUrl, int i) throws Exception {
@@ -75,7 +77,7 @@ public class ReadInWork extends EBookAdapter {
 			writer.write(index + 1 + "");
 			writer.close();
 		} else {
-			System.out.println(entries.size() + "/" + i + " 少年呦！青春是不允许越界的！！");
+			System.out.println(entries.size() + "/" + index + " 少年呦！青春是不允许越界的！！");
 		}
 
 	}

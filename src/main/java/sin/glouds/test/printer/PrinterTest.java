@@ -22,7 +22,7 @@ public class PrinterTest {
         JFileChooser fileChooser = new JFileChooser(); //创建打印作业  
         int state = fileChooser.showOpenDialog(null);  
         if(state == fileChooser.APPROVE_OPTION){  
-            File file = new File("F:/wcc.txt"); //获取选择的文件  
+            File file = new File("G:/temp/printer.txt"); //获取选择的文件  
             //构建打印请求属性集  
             HashPrintRequestAttributeSet pras = new HashPrintRequestAttributeSet();  
             //设置打印格式，因为未确定类型，所以选择autosense  

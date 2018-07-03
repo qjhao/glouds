@@ -48,7 +48,7 @@ public class JsonGen {
 			for(JsonInfo inf : info.getInfos()) {
 				switch (inf.getValueType()) {
 				case ARRAY:
-					writer.println("\tprivate List<" + StringUtil.toFirstUpperCase(inf.getName()) + "> " + inf.getName() + "s;");
+					writer.println("\tprivate List<" + StringUtil.toFirstUpperCase(inf.getName()) + "> " + inf.getName() + ";");
 					break;
 				case OBJECT:
 					writer.println("\tprivate " + StringUtil.toFirstUpperCase(inf.getName()) + " " + inf.getName() + ";");
@@ -78,10 +78,10 @@ public class JsonGen {
 				switch (inf.getValueType()) {
 				case ARRAY:
 					writer.println("\tpublic List<" + StringUtil.toFirstUpperCase(inf.getName()) + "> get" + StringUtil.toFirstUpperCase(inf.getName()) + "() {");
-					writer.println("\t\treturn " + inf.getName() + "s;");
+					writer.println("\t\treturn " + inf.getName() + ";");
 					writer.println("\t}");
-					writer.println("\tpublic void set" + StringUtil.toFirstUpperCase(inf.getName()) + "(List<" + StringUtil.toFirstUpperCase(inf.getName()) + ">" + inf.getName() + "s) {");
-					writer.println("\t\tthis." + inf.getName() + "s = " + inf.getName() + "s;");
+					writer.println("\tpublic void set" + StringUtil.toFirstUpperCase(inf.getName()) + "(List<" + StringUtil.toFirstUpperCase(inf.getName()) + ">" + inf.getName() + ") {");
+					writer.println("\t\tthis." + inf.getName() + " = " + inf.getName() + ";");
 					writer.println("\t}");
 					break;
 				case OBJECT:
@@ -193,6 +193,11 @@ public class JsonGen {
 				inf.setValueType(ValueType.DOUBLE);
 				break;
 			default:
+				inf.setName(key.toString());
+				inf.setRoot(false);
+				inf.setType(Type.VALUE);
+				inf.setValue(value.toString());
+				inf.setValueType(ValueType.STRING);
 				break;
 			}
 			infos.add(inf);
