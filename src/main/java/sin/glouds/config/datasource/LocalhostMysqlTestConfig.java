@@ -27,7 +27,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class LocalhostMysqlTestConfig {
 
 	@Autowired
-	@Qualifier("localhostMysqlTestDataSource")
+//	@Qualifier("localhostMysqlTestDataSource")
+	@Qualifier("dynamicDataSource")
 	private DataSource localhostMysqlTestDataSource;
 	@Autowired
 	private JpaProperties jpaProperties;

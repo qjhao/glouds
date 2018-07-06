@@ -2,8 +2,6 @@ package sin;
 
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,8 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
-import sin.glouds.entity.test.TestChild;
-import sin.glouds.repository.sins.TestRepository;
+import sin.glouds.config.datasource.dynamic.DynamicDataSource;
 import sin.glouds.repository.test.TestChildRepository;
 
 @SpringBootApplication
@@ -26,15 +23,16 @@ public class Application {
 	}
 	
 	@Bean
-	CommandLineRunner init(final TestRepository repository, final TestChildRepository childRepository) {
+	CommandLineRunner init(final TestChildRepository repository, final DynamicDataSource dynamicDataSource) {
 		return new CommandLineRunner() {
 			
 			@Override
 			public void run(String... arg0) throws Exception {
-				List<TestChild> childs = childRepository.findAll();
-				List<Integer> ids = new ArrayList<>();
-				childs.forEach(child -> ids.add(child.getId()));
-				System.out.println(repository.findAllByIdNotIn(ids).size());
+				System.out.println(repository.findAll().size());
+				System.out.println(dynamicDataSource.getConnection().getMetaData().getDatabaseProductName());
+				dynamicDataSource.changeDataSource("lalala", "jdbc:oracle:thin:@192.168.8.10:1521:yige", "yige", "123456", "oracle.jdbc.driver.OracleDriver");
+				System.out.println(dynamicDataSource.getConnection().getMetaData().getDatabaseProductName());
+				System.out.println(repository.findAll().size());
 			}
 		};
 	}

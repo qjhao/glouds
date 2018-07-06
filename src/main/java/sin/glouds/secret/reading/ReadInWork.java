@@ -53,7 +53,7 @@ public class ReadInWork extends EBookAdapter {
 
 	public static void main(String[] args) throws Exception {
 		ReadInWork riw = new ReadInWork();
-		riw.readAutoIncrease(rdzs, rdzs, -1);
+		riw.readAutoIncrease(wushi, shenpin, -1);
 	}
 
 	public void readAutoIncrease(String url, String baseUrl, int i) throws Exception {
