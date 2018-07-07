@@ -32,7 +32,8 @@ public class Application {
 				System.out.println(dynamicDataSource.getConnection().getMetaData().getDatabaseProductName());
 				dynamicDataSource.changeDataSource("lalala", "jdbc:oracle:thin:@192.168.8.10:1521:yige", "yige", "123456", "oracle.jdbc.driver.OracleDriver");
 				System.out.println(dynamicDataSource.getConnection().getMetaData().getDatabaseProductName());
-				System.out.println(repository.findAll().size());
+				dynamicDataSource.changeDataSource("hahaha", "jdbc:oracle:thin:@192.168.8.10:1521:yige", "yige", "123", "oracle.jdbc.driver.OracleDriver");
+				System.out.println(dynamicDataSource.getConnection().getMetaData().getDatabaseProductName());
 			}
 		};
 	}

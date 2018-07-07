@@ -1,6 +1,6 @@
 package sin.glouds.config.datasource.dynamic;
 
-import java.sql.SQLException;
+import java.sql.DriverManager;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,27 +45,22 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
 			String driverClassName) {
 		if (!dataSourceMap.containsKey(dataSourceName)) {
 			System.out.println("-=-=-=-=-=-=-=-");
+			
+			try {
+				Class.forName(driverClassName);
+				DriverManager.getConnection(url, user, password).close();;
+			} catch (Exception e) {
+				throw new IllegalStateException("无法连接该数据库");
+			}
+			
 			DruidDataSource dataSource = new DruidDataSource();
 			dataSource.setUrl(url);
 			dataSource.setUsername(user);
 			dataSource.setPassword(password);
 			dataSource.setDriverClassName(driverClassName);
 			dataSourceMap.put(dataSourceName, dataSource);
-			setTargetDataSources(dataSourceMap);
-			try {
-				System.out.println(dataSource.getConnection().getMetaData().getDatabaseProductName());
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 		DataSourceContextHolder.setDataSourceName(dataSourceName);
-		try {
-			System.out.println(getConnection().getMetaData().getDatabaseProductName());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	@Override
