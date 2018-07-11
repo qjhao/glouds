@@ -10,7 +10,6 @@ import java.net.URL;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.http.HttpConnection;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,7 +36,7 @@ public class SystemController extends BaseController {
 		while((line = reader.readLine()) != null) {
 			result = result + line;
 		}
-		
+		reader.close();
 		return result;
 	}
 	

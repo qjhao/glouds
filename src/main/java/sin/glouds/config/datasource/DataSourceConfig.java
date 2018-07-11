@@ -50,7 +50,7 @@ public class DataSourceConfig {
 	@Bean(name = "dynamicDataSource")
 	public DataSource dynamicDataSource() {
 		DynamicDataSource dynamicDataSource = new DynamicDataSource();
-		dynamicDataSource.setDefaultTargetDataSource(localhostMysqlTestDatasource());
+		dynamicDataSource.setDefaultTargetDataSource(localhostMysqlJeesiteDatasource());
 		Map<Object, Object> dataSourceMap = new HashMap<>();
 //		dataSourceMap.put("sins", localhostMysqlSinsDatasource());
 //		dataSourceMap.put("jeesite", localhostMysqlJeesiteDatasource());

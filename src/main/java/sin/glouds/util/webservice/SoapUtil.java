@@ -3,7 +3,6 @@ package sin.glouds.util.webservice;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -23,9 +22,6 @@ import javax.xml.soap.SOAPFault;
 import javax.xml.soap.SOAPMessage;
 
 import org.w3c.dom.Document;
-
-import com.eagerto.Test;
-import com.sun.media.rtsp.protocol.Request;
 
 /**
  * SOAP 工具类
@@ -70,7 +66,6 @@ public final class SoapUtil {
 				SOAPMessage responseMessage = MessageFactory.newInstance(SOAPConstants.DEFAULT_SOAP_PROTOCOL).createMessage(null, is);
 				responseMessage.writeTo(System.out);
 				System.out.println();
-				Unmarshaller unmarshaller = JAXBContext.newInstance(response).createUnmarshaller();
 				if(responseMessage.getSOAPBody().hasFault()) {
 					SOAPFault fault = responseMessage.getSOAPBody().getFault();
 					return SoapResult.fail(fault);
@@ -89,8 +84,8 @@ public final class SoapUtil {
 
 	private static SOAPMessage getRequestMessage(Object param, String envelopePrefix, String bodyPrefix) throws ParserConfigurationException, JAXBException, SOAPException, IOException {
 		Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
-		Marshaller marshaller = JAXBContext.newInstance(Test.class).createMarshaller();
-		marshaller.marshal(new Test(), document);
+		Marshaller marshaller = JAXBContext.newInstance(param.getClass()).createMarshaller();
+		marshaller.marshal(param, document);
 		SOAPMessage message = MessageFactory.newInstance(SOAPConstants.DEFAULT_SOAP_PROTOCOL).createMessage();
 		
 		SOAPBody soapBody = message.getSOAPBody();
@@ -103,6 +98,7 @@ public final class SoapUtil {
 		envelope.setPrefix(envelopePrefix);
 		envelope.removeChild(envelope.getHeader());
 		soapBody.setPrefix(bodyPrefix);
+		message.writeTo(System.out);
 		return message;
 	}
 	

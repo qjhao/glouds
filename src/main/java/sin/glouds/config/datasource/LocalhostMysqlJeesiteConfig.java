@@ -19,7 +19,8 @@ public class LocalhostMysqlJeesiteConfig {
 	private static final String MAPPER_LOCATION = "classpath:mybatis/mappers/localhost/mysql/jeesite/*.xml";
 	private static final String MAPPER_CONFIG = "classpath:mybatis/mybatis-config.xml";
 	@Autowired
-	@Qualifier("localhostMysqlJeesiteDataSource")
+//	@Qualifier("localhostMysqlJeesiteDataSource")
+	@Qualifier("dynamicDataSource")
 	private DataSource datasource;
 
 	@Bean(name = "localhostMysqlJeesiteSqlSessionFactory")
