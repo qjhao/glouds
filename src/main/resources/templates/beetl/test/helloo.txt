@@ -1,0 +1,7 @@
+hello, ${name}!!
+hlelo, ${prop}..
+<%
+for(username in list) {
+%>
+hello, ${username}!!
+<% } %>

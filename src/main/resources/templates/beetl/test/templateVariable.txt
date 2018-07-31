@@ -1,0 +1,8 @@
+<%
+var content = {
+	var c = "1234";
+	print(c);
+%>
+hello, ${c}
+<% }; %>
+...${content}
