@@ -1,19 +1,14 @@
 package sin.glouds.temp;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import sin.glouds.project.gen.json.JsonGen;
-
 public class Test {
 
 	public static void main(String[] args) throws IOException {
-		 lukeMsg(20, 0, "7");
+		 lukeMsg(60, 5, "超");
 
 //		 BufferedReader reader = new BufferedReader(new FileReader(new
 //		 File("H:/temp/json.txt")));
@@ -30,9 +25,9 @@ public class Test {
 		ncount = ncount + ecount * 34;
 		showTime(ncount, 170, ename + "5达成！！", 11, 4);
 		System.out.println();
-		showTime(ncount, 270, "圣耀到手！！", 11, 4);
+		showTime(ncount, 295, "圣耀到手！！", 11, 4);
 		System.out.println();
-		showTime(ncount, 570, "卢克毕业！！", 11, 4);
+		showTime(ncount, 595, "卢克毕业！！", 11, 4);
 		System.out.println();
 		System.out.println("欧皇附体！！！！！");
 		showTime(0, 570, "真·欧皇成就达成！！", 11, 4);

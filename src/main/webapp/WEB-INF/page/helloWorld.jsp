@@ -11,7 +11,7 @@
 <script type="text/javascript">
 		var ws;
 		$(function() {
-			initWs();
+			//initWs();
 			$("#send").click(function send() {
 				if(ws)
 					ws.send($("#message").val());
@@ -53,6 +53,7 @@
 		}
 		
 	</script>
+	
 </head>
 <body>
 	<div id="sin-audio"></div>

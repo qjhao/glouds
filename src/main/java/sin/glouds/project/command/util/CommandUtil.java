@@ -409,4 +409,8 @@ public class CommandUtil {
 		}
 		return false;
 	}
+	
+	public static void main(String[] args) {
+		openDefaultBrowser("http://www.baidu.com");
+	}
 }
