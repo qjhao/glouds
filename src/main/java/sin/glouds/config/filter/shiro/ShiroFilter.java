@@ -24,6 +24,7 @@ public class ShiroFilter {
 		filterChainDefinitionMap.put("/static/**", "anon");
 		filterChainDefinitionMap.put("/common/**", "anon");
 		filterChainDefinitionMap.put("/demo/**", "anon");
+		filterChainDefinitionMap.put("/ws/**", "anon");
 		filterChainDefinitionMap.put("/**", "user");
 		filterChainDefinitionMap.put("/sys/**", "anon");
 		shiroFilterFactoryBean.setLoginUrl("/login");

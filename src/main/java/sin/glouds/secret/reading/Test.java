@@ -13,7 +13,7 @@ public class Test extends EBookAdapter {
 //		for(Entry entry : entries) {
 //			System.out.println(i++ + "\t" + entry.title);
 //		}
-		System.out.println(test.getHtml("http://www.rushuwu.net/0/449/"));
+		System.out.println(test.getHtml("https://www.boluoxs.com/biquge/0/71/xs14296884.html"));
 //		String fileName = "H://sins/sins/src/main/resource/123";
 //		BufferedReader reader = new BufferedReader(new FileReader(fileName));
 //		int i = Integer.parseInt(reader.readLine());

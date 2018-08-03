@@ -3,6 +3,7 @@ package sin.glouds.test.webservice;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.xml.ws.Endpoint;
 
@@ -15,6 +16,7 @@ public class WsTest {
 		Endpoint.publish("http://localhost:10810/service/WsTest", new WsTest());
 	}
 	
+	@WebMethod
 	public String getString(String name) {
 		return "your name is " + name;
 	}
