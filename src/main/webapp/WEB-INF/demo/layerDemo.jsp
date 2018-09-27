@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>layer测试</title>
 <script type="text/javascript">
+var data = {name:'glouds'}
 //初体验
 function layerAlert() {
 	layer.alert('内容')
@@ -115,24 +116,22 @@ function layerOpenIframe() {
 function layerOpenWindow() {
 	layer.open({
 		type : 2,
-		title : false,
-		closeBtn : 0, //不显示关闭按钮
-		shade : [ 0 ],
-		area : [ '340px', '215px' ],
-		offset : 'rb', //右下角弹出
-		time : 2000, //2秒后自动关闭
-		anim : 2,
-		content : [ 'test/guodu.html', 'no' ], //iframe的url，no代表不显示滚动条
-		end : function() { //此处用于演示
-			layer.open({
-				type : 2,
-				title : '很多时候，我们想最大化看，比如像这个页面。',
-				shadeClose : true,
-				shade : false,
-				maxmin : true, //开启最大化最小化按钮
-				area : [ '893px', '600px' ],
-				content : '//fly.layui.com/'
-			});
+		title : '很多时候，我们想最大化看，比如像这个页面。',
+		shadeClose : true,
+		shade : false,
+		btn : ['确定', '取消'],
+		maxmin : true, //开启最大化最小化按钮
+		area : [ '893px', '600px' ],
+		content : '//localhost:8082/sins/demo/demo?name=layerDialogDemo',
+		btn1 : function(index, lay1) {
+			console.log(index);
+			console.log(lay1);
+			console.log(data);
+		},
+		btn2 : function(index, lay1) {
+			console.log(index);
+			console.log(lay1);
+			console.log(data);
 		}
 	});
 }
@@ -208,23 +207,7 @@ function layerPhotos() {
 
 </head>
 <body>
-	<button class="btn btn-primary" onclick="layerAlert()">提醒</button>
-	<button class="btn btn-default" onclick="layerSkinAlert()">带皮肤的提醒</button>
-	<button class="btn btn-info" onclick="layerConfirm()">确认</button>
-	<button class="btn btn-success" onclick="layerMessage()">提示</button>
-	<button class="btn btn-warning" onclick="layerBg()">蓝绿风格</button>
-	<button class="btn btn-primary" onclick="layerOpen()">捕获</button>
-	<button class="btn btn-default" onclick="openDialog2()">添加</button>
-	<button class="btn btn-info" onclick="openDialog3()">添加</button>
-	<button class="btn btn-success" onclick="showDialog()">显示</button>
-	<button class="btn btn-warning" onclick="hideDialog()">隐藏</button>
-	<button class="btn btn-primary" onclick="openDialog1()">添加</button>
-	<button class="btn btn-default" onclick="openDialog2()">添加</button>
-	<button class="btn btn-info" onclick="openDialog3()">添加</button>
-	<button class="btn btn-success" onclick="showDialog()">显示</button>
-	<button class="btn btn-warning" onclick="hideDialog()">隐藏</button>
-	<button class="btn btn-primary" onclick="openDialog1()">添加</button>
-	<button class="btn btn-default" onclick="openDialog2()">添加</button>
-	<button class="btn btn-warning" onclick="layerTest()">隐藏</button>
+	<button class="btn btn-primary" onclick="layerOpenIframe()">iframe窗</button>
+	<button class="btn btn-primary" onclick="layerOpenWindow()">window窗</button>
 </body>
 </html>

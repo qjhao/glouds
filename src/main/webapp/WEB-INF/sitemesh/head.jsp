@@ -10,6 +10,7 @@
 
 <script src="${ctxStatic}/lhgdialog/lhgcore.lhgdialog.min.js" type="text/javascript"></script>
 <script src="${ctxStatic}/lhgdialog/lhgdialog.min.js" type="text/javascript"></script>
+<script src="${ctxStatic}/layer/3.1/layer.js" type="text/javascript"></script>
 
 <link href="${ctxStatic}/bootstrap-table/bootstrap-table.css" type="text/css" rel="stylesheet" />
 <link href="${ctxStatic}/bootstrap-editable/css/bootstrap-editable.css" type="text/css" rel="stylesheet" />

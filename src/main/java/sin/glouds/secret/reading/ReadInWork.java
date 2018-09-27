@@ -52,10 +52,11 @@ public class ReadInWork extends EBookAdapter {
 	public static final String cfwljhg = "http://www.shenpinwu.com/18/18962/";
 	public static final String hyzmnry = "https://www.qisuu.la/du/29/29417/";
 	public static final String hhzntyd = "https://www.boluoxs.com/biquge/0/71/";
+	public static final String hyzxd = "https://www.shenpinwu.com/1/1874/";
 
 	public static void main(String[] args) throws Exception {
 		ReadInWork riw = new ReadInWork();
-		riw.readAutoIncrease(hhzntyd, "", -1);
+		riw.readAutoIncrease(hyzxd, shenpin, -1);
 	}
 
 	public void readAutoIncrease(String url, String baseUrl, int i) throws Exception {

@@ -9,7 +9,7 @@
 <sitemesh:write property="head"/>
 </head>
 <body class="skin-blue">
-	<%-- <script type="text/javascript" src="${ctxStatic}/myjs/fingers.js"></script> --%>
+	<script type="text/javascript" src="${ctxStatic}/myjs/fingers.js"></script>
 	<sitemesh:write property="body"/>
 </body>
 </html>
