@@ -53,10 +53,11 @@ public class ReadInWork extends EBookAdapter {
 	public static final String hyzmnry = "https://www.qisuu.la/du/29/29417/";
 	public static final String hhzntyd = "https://www.boluoxs.com/biquge/0/71/";
 	public static final String hyzxd = "https://www.shenpinwu.com/1/1874/";
+	public static final String hlzxhzjz = "https://www.fpzw.com/xiaoshuo/86/86637/";
 
 	public static void main(String[] args) throws Exception {
 		ReadInWork riw = new ReadInWork();
-		riw.readAutoIncrease(hyzxd, shenpin, -1);
+		riw.readAutoIncrease(hlzxhzjz, hlzxhzjz, -1);
 	}
 
 	public void readAutoIncrease(String url, String baseUrl, int i) throws Exception {
@@ -72,7 +73,7 @@ public class ReadInWork extends EBookAdapter {
 		Entries entries = getChapterEntries(url);
 		if (entries.size() > index) {
 			Entry entry = entries.get(index);
-			String content = getHtml(entry, baseUrl).replaceAll("&nbsp;", "");
+			String content = getHtml(entry, baseUrl).replaceAll("&nbsp;", "").replaceAll("<br>", "\n");
 			System.out.println((content.length() < 100000 ? content : content.substring(0, 100000)) + "\n" + index + " "
 					+ entry.title);
 

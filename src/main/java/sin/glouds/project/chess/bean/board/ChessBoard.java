@@ -141,15 +141,15 @@ public class ChessBoard {
 	}
 	
 	public void printChessBoard() throws InterruptedException {
-		String blank = "  ";
+		String blank = "    ";
 		for(Position[] pos : positions) {
 			for(Position p : pos) {
 				if(p.piece == null) {
-					System.err.print(blank);
+					System.out.print(blank);
 					Thread.sleep(10);
 				}else {
 					if(p.piece.camp == CAMP.CAMP_RED) {
-						System.out.print(p.piece.piece);
+						System.err.print(p.piece.piece);
 						Thread.sleep(10);
 					}else if(p.piece.camp == CAMP.CAMP_BLACK){
 						System.out.print(p.piece.piece);

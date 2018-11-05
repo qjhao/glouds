@@ -2,9 +2,8 @@ package sin.glouds.config.filter;
 
 import org.sitemesh.builder.SiteMeshFilterBuilder;
 import org.sitemesh.config.ConfigurableSiteMeshFilter;
-import org.springframework.context.annotation.Configuration;
 
-@Configuration
+//@Configuration
 public class SitemeshFilter extends ConfigurableSiteMeshFilter {
 
 	@Override

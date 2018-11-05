@@ -17,4 +17,9 @@ public class HomeController {
 	public String index() {
 		return "sys/index";
 	}
+	
+	@RequestMapping("/helloworld")
+	public String helloworld(HttpServletRequest request) {
+		return "helloworld";
+	}
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class JsonParserUtil {
@@ -23,8 +24,9 @@ public class JsonParserUtil {
 	 * @param clazz 要解析成的对象类型
 	 * @param root 要解析的key值
 	 * @return list Object对象集合，使用时需强转
+	 * @throws JSONException 
 	 */
-	public static List<Object> parserJsonArray(String json, Class<?> clazz, String root) {
+	public static List<Object> parserJsonArray(String json, Class<?> clazz, String root) throws JSONException {
 		
 		List<Object> list = new ArrayList<>();
 		
@@ -182,7 +184,7 @@ public class JsonParserUtil {
 		return string.split(root).length > 2;
 	}
 
-	public static List<Object> parserJsonArray(String json, Class<?> clazz) {
+	public static List<Object> parserJsonArray(String json, Class<?> clazz) throws JSONException {
 		return parserJsonArray(json, clazz, UUID.randomUUID().toString());
 	}
 	

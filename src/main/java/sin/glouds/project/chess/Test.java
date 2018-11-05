@@ -7,13 +7,14 @@ import sin.glouds.project.chess.bean.play.Play;
 
 public class Test {
 	public static void main(String[] args) throws InterruptedException {
+		start();
 		//test();
-		Play play = new Play();
-		System.out.println(play.click(9, 7));
-		System.out.println(play.click(7, 6));
-		play.move(new Point(9, 7), new Point(7, 6));
-		play.printChessBoard();
-		play.printQipu();
+//		Play play = new Play();
+//		System.out.println(play.click(9, 7));
+//		System.out.println(play.click(7, 6));
+//		play.move(new Point(9, 7), new Point(7, 6));
+//		play.printChessBoard();
+//		play.printQipu();
 	}
 
 	public static void start() {

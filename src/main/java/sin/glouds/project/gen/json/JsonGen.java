@@ -5,24 +5,25 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import sin.glouds.util.StringUtil;
 
 public class JsonGen {
 	
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws FileNotFoundException, JSONException {
 		String jsonStr = "{\"name\":\"glouds\",\"age\":25,\"books\":[{\"math\":true},{\"computer\":false}],\"male\":false,\"sal\":2.2,\"brother\":{\"name\":\"jemmy\"},\"isDel\":'1'}";
 		File file = new File("F://gen/json");
 		jsonToJavaBeanFile(jsonStr,file,"user","sin.glouds.bean.gen");
 	}
 
-	public static void jsonToJavaBeanFile(String json, File file, String className, String packageName) throws FileNotFoundException {
+	public static void jsonToJavaBeanFile(String json, File file, String className, String packageName) throws FileNotFoundException, JSONException {
 		
 		JSONObject jsonObject = new JSONObject(json);
 		JsonInfo info = parseJsonObject(jsonObject, className, true, Type.OBJECT);
@@ -140,7 +141,7 @@ public class JsonGen {
 		}
 	}
 	
-	public static JsonInfo parseJsonObject(JSONObject obj, String name, boolean root, Type type) {
+	public static JsonInfo parseJsonObject(JSONObject obj, String name, boolean root, Type type) throws JSONException {
 		
 		JsonInfo info = new JsonInfo();
 		
@@ -150,9 +151,10 @@ public class JsonGen {
 		
 		List<JsonInfo> infos = new ArrayList<>();
 		
-		Set<?> keys = obj.keySet();
+		Iterator<?> keys = obj.keys();
 
-		for (Object key : keys) {
+		while (keys.hasNext()) {
+			Object key = keys.next();
 			Object value = obj.get(key.toString());
 			JsonInfo inf = new JsonInfo();
 			switch (value.getClass().getName()) {
